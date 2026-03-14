@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loading...</title>
+
+<script>
+async function checkSite() {
+
+  const mainSite = "https://writeupportalos.netlify.app/";
+  const backupSite = "https://htwth.vercel.app/";
+
+  try {
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+
+    await fetch(mainSite, {mode:"no-cors", signal:controller.signal});
+
+    clearTimeout(timeout);
+
+    window.location.href = mainSite;
+
+  } catch (error) {
+
+    window.location.href = backupSite;
+
+  }
+
+}
+
+checkSite();
+</script>
+
+</head>
+
+<body>
+
+<h2>Checking server...</h2>
+
+</body>
+</html>
